@@ -6,35 +6,28 @@ var path = require("path");
 
 
 // ===============================================================================
-// LOAD DATA
-// ===============================================================================
-
-//var tableData = require("../data/tableData");
-//var waitListData = require("../data/waitinglistData");
-
-
-// ===============================================================================
 // ROUTING
 // ===============================================================================
-module.exports = function(app) {
+
+module.exports = function (app) {
+    // HTML GET Requests
+    // Below code handles when users "visit" a page.
+    // In each of the below cases the user is shown an HTML page of content
+    // ---------------------------------------------------------------------------
 
     // API GET Requests
     // ---------------------------------------------------------------------------
-  
-    app.get("/", function(req, res) {
-      res.sendFile(path.join(__dirname, "./../public/index.html"));
+
+    app.get("/", function (req, res) {
+        res.sendFile(path.join(__dirname, "./../public/index.html"));
     });
-  
-    app.get("/survey", function(req, res) {
+
+    app.get("/survey", function (req, res) {
         res.sendFile(path.join(__dirname, "./../public/survey.html"));
     });
-  
-    // API POST Requests
-    // ---------------------------------------------------------------------------
-  
-    // app.post("/friends", function(req, res) {
-    
-    // });
-  
-  };
-  
+
+    // If no matching route is found default to home
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+    });
+};

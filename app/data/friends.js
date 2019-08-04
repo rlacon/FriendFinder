@@ -1,17 +1,14 @@
 // ===============================================================================
 // DATA
-// Below data will hold all of the reserved tables.
-// Initially we just set it equal to a "dummy" customer.
-// But you could have it be an empty array as well.
+// Below data will hold all of the survey results.
 // ===============================================================================
 
-var friends = [
+var friendsArray = [
     {
-        name: "Ryan",
-        photo: "https://ryanlacon.codes/images/me.jpg",
-        // scores: []
+        friendName: "Ryan",
+        friendPhoto: "https://ryanlacon.codes/images/me.jpg",
+        // scores: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
     }
 ];
 
-// Note how we export the array. This makes it accessible to other files using require.
-module.exports = friends;
+module.exports = friendsArray;
