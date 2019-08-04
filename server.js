@@ -11,19 +11,13 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// var friend = [
-//     {
-//         name: "Ryan",
-//         photo: "https://ryanlacon.codes/images/me.jpg",
-//         scores: []
-//     }
-// ]
 
 // ================================================================================
 // ROUTER
 // The below points our server to a series of "route" files.
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
+
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 

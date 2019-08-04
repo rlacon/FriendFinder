@@ -43,7 +43,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>2.) Generally speaking, you rely more on your experience than your imagination.</strong>
@@ -56,7 +56,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
 
@@ -70,7 +70,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>4.) You rarely do something just out of sheer curiosity.</strong></p>
@@ -82,7 +82,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>5.) People can rarely upset you.</strong></p>
@@ -94,7 +94,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>6.) It's often difficult for you to relate to other people’s feelings.</strong></p>
@@ -106,7 +106,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>7.) In a discussion, truth should be more important than people’s sensitivities.</strong>
@@ -119,7 +119,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>8.) You rarely get carried away by fantasies and ideas.</strong></p>
@@ -131,10 +131,10 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
-                <p><strong>9.) You think that everyone’s views should be respected regardless of whether they are
+                <p><strong>9.) You think that everyone’s views should be respected regardless of whether they're
                         supported
                         by facts or not.</strong></p>
                 <select class="chosen-select" id="q9" placeholder="Make a selection">
@@ -145,7 +145,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
                 <p><strong>10.) You feel more energetic after spending time with a group of people.</strong></p>
@@ -157,7 +157,7 @@
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
-                <br>
+                <br><br>
                 <hr>
 
             </div>
@@ -181,13 +181,10 @@
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
-
             // Here we grab the form elements
             var newFriend = {
                 friendName: $("#name").val().trim(),
                 friendPhoto: $("#photo").val().trim(),
-                // scores: $("#q1").val().trim() + $("#q2").val().trim(),
-                // scores: $(".chosen-select").val().trim()
                 scores: [
                     $('#q1').val(),
                     $('#q2').val(),
@@ -203,7 +200,6 @@
             };
 
             console.log(newFriend);
-
 
             // This line is the magic. It's very similar to the standard ajax function we used.
             // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
@@ -223,8 +219,17 @@
                     // Clear the form when submitting
                     $("#name").val("");
                     $("#photo").val("");
+                    $("#q1 option:selected").removeAttr("selected");
+                    $("#q2 option:selected").removeAttr("selected");
+                    $("#q3 option:selected").removeAttr("selected");
+                    $("#q4 option:selected").removeAttr("selected");
+                    $("#q5 option:selected").removeAttr("selected");
+                    $("#q6 option:selected").removeAttr("selected");
+                    $("#q7 option:selected").removeAttr("selected");
+                    $("#q8 option:selected").removeAttr("selected");
+                    $("#q9 option:selected").removeAttr("selected");
+                    $("#q10 option:selected").removeAttr("selected");
                 });
-
         });
 
     </script>

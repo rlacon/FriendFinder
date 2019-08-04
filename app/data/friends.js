@@ -7,7 +7,7 @@ var friendsArray = [
     {
         friendName: "Ryan",
         friendPhoto: "https://ryanlacon.codes/images/me.jpg",
-        // scores: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
+        scores: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
     }
 ];
 
