@@ -8,12 +8,14 @@ var friends = require("../data/friends");
 // ===============================================================================
 // ROUTING
 // ===============================================================================
+
 module.exports = function (app) {
     // API GET Requests
     // Below code handles when users "visit" a page.
     // In each of the below cases when a user visits a link
     // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
     // ---------------------------------------------------------------------------
+
     app.get("/api/friends", function (req, res) {
         res.json(friends);
         res.json(bestMatch);
@@ -25,7 +27,7 @@ module.exports = function (app) {
         var bestMatch = {
             name: "",
             photo: "",
-            scores: []
+            scores: Infinity
         }
         for (var i = 0; i < friends.length; i++) {
             var tempFriend = friends[i];
@@ -37,11 +39,18 @@ module.exports = function (app) {
                 differenceScores += Math.abs(parseInt(tempFriendScore) - parseInt(friendScores));
                 console.log(differenceScores);
             }
+
+            if (differenceScores <= bestMatch.scores) {
+                bestMatch.name = tempFriend.name;
+                bestMatch.photo = tempFriend.photo;
+                bestMatch.scores = differenceScores;
+            }
         }
 
         console.log("Making a post call to add new friend...");
         friends.push(userInfo);
-        // bestMatch.push(userInfo);
-        res.json(true);
+        res.json(bestMatch);
+        console.log(bestMatch.name);
+        console.log(bestMatch.photo);
     });
 };

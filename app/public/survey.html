@@ -217,31 +217,15 @@
                 $(".chosen-select").each(function () {
                     if ($(this).val() === "") {
                         isValid = false;
-                        
                     }
                 });
                 return isValid;
             }
 
-            function convertScores() {
-                // Need to loop through all the objects in the friends array 
-                for(var i = 0; i < friendsArray.length; i++) {
-
-                    // Loop through the scores array
-                    for(var i = 0; i < friendsArray.scores.length; i++) {
-
-                        // Add up all the total scores
-
-
-                    }
-
-                }
-            }
-
             if (validateForm()) {
                 var newFriend = {
-                    friendName: $("#name").val().trim(),
-                    friendPhoto: $("#photo").val().trim(),
+                    name: $("#name").val().trim(),
+                    photo: $("#photo").val().trim(),
                     scores: [
                         $('#q1').val(),
                         $('#q2').val(),
