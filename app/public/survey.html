@@ -162,9 +162,33 @@
                 <hr>
 
             </div>
-
             <br>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" data-toggle="modal"
+                data-target="#friendModal">Submit</button>
+
+            <!-- Modal that appears with information on matched friend -->
+            <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="friendModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <a href="/api/friends" class="stretched-link">API Table Link</a><span style="color: lightslategray;"> |
@@ -181,23 +205,37 @@
 
         $("#submit").on("click", function (event) {
             event.preventDefault();
+            var totalScore = 0;
 
             function validateForm() {
                 var isValid = true;
                 $(".form-control").each(function () {
                     if ($(this).val() === "") {
                         isValid = false;
-                        alert("Fill out all fields before submitting")
                     }
                 });
                 $(".chosen-select").each(function () {
                     if ($(this).val() === "") {
                         isValid = false;
-                        alert("Fill out all fields before submitting")
-
+                        
                     }
                 });
                 return isValid;
+            }
+
+            function convertScores() {
+                // Need to loop through all the objects in the friends array 
+                for(var i = 0; i < friendsArray.length; i++) {
+
+                    // Loop through the scores array
+                    for(var i = 0; i < friendsArray.scores.length; i++) {
+
+                        // Add up all the total scores
+
+
+                    }
+
+                }
             }
 
             if (validateForm()) {
@@ -228,13 +266,6 @@
                 $.post("/api/friends", newFriend,
                     function (data) {
 
-                        if (data) {
-                            alert("Friend added");
-                        }
-                        else {
-                            alert("Something went wrong");
-                        }
-
                         // Clear the form when submitting
                         $("#name").val("");
                         $("#photo").val("");
@@ -249,8 +280,9 @@
                         $("#q9 option:selected").removeAttr("selected");
                         $("#q10 option:selected").removeAttr("selected");
                     });
+            } else {
+                alert("Fill out all fields before submitting");
             }
-
         });
 
     </script>
