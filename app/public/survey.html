@@ -23,6 +23,7 @@
             <div class="form-group">
                 <label for="name"><strong>Name</strong></label>
                 <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                <br>
                 <hr>
                 <label for="photo"><strong>Photo</strong></label>
                 <input type="text" class="form-control" id="photo" placeholder="Enter a link to your photo">
@@ -46,7 +47,7 @@
                 <br><br>
                 <hr>
 
-                <p><strong>2.) Generally speaking, you rely more on your experience than your imagination.</strong>
+                <p><strong>2.) You rely more on your experience than your imagination.</strong>
                 </p>
                 <select class="chosen-select" id="q2" placeholder="Make a selection">
                     <option value="">Make a selection</option>
@@ -60,7 +61,7 @@
                 <hr>
 
 
-                <p><strong>3.) You find it easy to stay relaxed and focused even when there is some
+                <p><strong>3.) You find it easy to stay relaxed and focused even when there's some
                         pressure.</strong></p>
                 <select class="chosen-select" id="q3" placeholder="Make a selection">
                     <option value="">Make a selection</option>
@@ -97,7 +98,7 @@
                 <br><br>
                 <hr>
 
-                <p><strong>6.) It's often difficult for you to relate to other people’s feelings.</strong></p>
+                <p><strong>6.) It's often difficult for you to relate to other people's feelings.</strong></p>
                 <select class="chosen-select" id="q6" placeholder="Make a selection">
                     <option value="">Make a selection</option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -109,7 +110,7 @@
                 <br><br>
                 <hr>
 
-                <p><strong>7.) In a discussion, truth should be more important than people’s sensitivities.</strong>
+                <p><strong>7.) In a discussion, truth should be more important than people's sensitivities.</strong>
                 </p>
                 <select class="chosen-select" id="q7" placeholder="Make a selection">
                     <option value="">Make a selection</option>
@@ -134,7 +135,7 @@
                 <br><br>
                 <hr>
 
-                <p><strong>9.) You think that everyone’s views should be respected regardless of whether they're
+                <p><strong>9.) You think that everyone's views should be respected regardless of whether they're
                         supported
                         by facts or not.</strong></p>
                 <select class="chosen-select" id="q9" placeholder="Make a selection">
@@ -181,55 +182,75 @@
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
-            // Here we grab the form elements
-            var newFriend = {
-                friendName: $("#name").val().trim(),
-                friendPhoto: $("#photo").val().trim(),
-                scores: [
-                    $('#q1').val(),
-                    $('#q2').val(),
-                    $('#q3').val(),
-                    $('#q4').val(),
-                    $('#q5').val(),
-                    $('#q6').val(),
-                    $('#q7').val(),
-                    $('#q8').val(),
-                    $('#q9').val(),
-                    $('#q10').val(),
-                ]
-            };
-
-            console.log(newFriend);
-
-            // This line is the magic. It's very similar to the standard ajax function we used.
-            // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-            // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-            // depending on if a tables is available or not.
-
-            $.post("/api/friends", newFriend,
-                function (data) {
-
-                    if (data) {
-                        alert("Friend added");
+            function validateForm() {
+                var isValid = true;
+                $(".form-control").each(function () {
+                    if ($(this).val() === "") {
+                        isValid = false;
+                        alert("Fill out all fields before submitting")
                     }
-                    else {
-                        alert("Something went wrong");
-                    }
-
-                    // Clear the form when submitting
-                    $("#name").val("");
-                    $("#photo").val("");
-                    $("#q1 option:selected").removeAttr("selected");
-                    $("#q2 option:selected").removeAttr("selected");
-                    $("#q3 option:selected").removeAttr("selected");
-                    $("#q4 option:selected").removeAttr("selected");
-                    $("#q5 option:selected").removeAttr("selected");
-                    $("#q6 option:selected").removeAttr("selected");
-                    $("#q7 option:selected").removeAttr("selected");
-                    $("#q8 option:selected").removeAttr("selected");
-                    $("#q9 option:selected").removeAttr("selected");
-                    $("#q10 option:selected").removeAttr("selected");
                 });
+                $(".chosen-select").each(function () {
+                    if ($(this).val() === "") {
+                        isValid = false;
+                        alert("Fill out all fields before submitting")
+
+                    }
+                });
+                return isValid;
+            }
+
+            if (validateForm()) {
+                var newFriend = {
+                    friendName: $("#name").val().trim(),
+                    friendPhoto: $("#photo").val().trim(),
+                    scores: [
+                        $('#q1').val(),
+                        $('#q2').val(),
+                        $('#q3').val(),
+                        $('#q4').val(),
+                        $('#q5').val(),
+                        $('#q6').val(),
+                        $('#q7').val(),
+                        $('#q8').val(),
+                        $('#q9').val(),
+                        $('#q10').val(),
+                    ]
+                };
+
+                console.log(newFriend);
+
+                // This line is the magic. It's very similar to the standard ajax function we used.
+                // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+                // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+                // depending on if a tables is available or not.
+
+                $.post("/api/friends", newFriend,
+                    function (data) {
+
+                        if (data) {
+                            alert("Friend added");
+                        }
+                        else {
+                            alert("Something went wrong");
+                        }
+
+                        // Clear the form when submitting
+                        $("#name").val("");
+                        $("#photo").val("");
+                        $("#q1 option:selected").removeAttr("selected");
+                        $("#q2 option:selected").removeAttr("selected");
+                        $("#q3 option:selected").removeAttr("selected");
+                        $("#q4 option:selected").removeAttr("selected");
+                        $("#q5 option:selected").removeAttr("selected");
+                        $("#q6 option:selected").removeAttr("selected");
+                        $("#q7 option:selected").removeAttr("selected");
+                        $("#q8 option:selected").removeAttr("selected");
+                        $("#q9 option:selected").removeAttr("selected");
+                        $("#q10 option:selected").removeAttr("selected");
+                    });
+            }
+
         });
 
     </script>
