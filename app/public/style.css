@@ -1,0 +1,46 @@
+body {
+    background-color: 	#5C97BF;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+label {
+    font-weight: bold;
+
+}
+
+h1 {
+    font-family: 'Baloo Chettan', cursive;
+}
+
+.top {
+    margin-top: 40px;
+}
+
+.jumbotron {
+    border-radius: 10px;
+    box-shadow: 10px 10px;
+}
+
+.form-control {
+    height: 40px;
+}
+
+.chosen-select {
+    font-weight: normal;
+}
+
+option {
+    font-weight: bold;
+}
+
+select {
+    padding-left: 10px;
+    height: 40px;
+    width: 240px;
+}
+
+.btn-block {
+    height: 60px;
+    border: none;
+}
