@@ -22,7 +22,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/friends", function (req, res) {
-        var differenceScores = 0;
+        var differenceScores;
         var userData = req.body;
         var bestMatch = {
             name: "",
@@ -31,7 +31,7 @@ module.exports = function (app) {
         }
         for (var i = 0; i < friends.length; i++) {
             var tempFriend = friends[i];
-
+            differenceScores = 0;
             for (var j = 0; j < tempFriend.scores.length; j++) {
                 var friendScores = userData.scores[j];
                 var tempFriendScore = tempFriend.scores[j];
@@ -46,7 +46,6 @@ module.exports = function (app) {
                 bestMatch.scores = differenceScores;
             }
         }
-
         console.log("Making a post call to add new friend...");
         friends.push(userData);
         res.json(bestMatch);
