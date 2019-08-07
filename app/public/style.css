@@ -1,5 +1,5 @@
 body {
-    background-color: 	#5C97BF;
+    background-color: #5C97BF;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -11,6 +11,18 @@ label {
 h1 {
     font-family: 'Baloo Chettan', cursive;
 }
+
+input[type="dropdown"]::placeholder { /* Firefox, Chrome, Opera */ 
+    color: red; 
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: red; 
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: red; 
+} 
 
 .top {
     margin-top: 40px;
@@ -29,8 +41,25 @@ h1 {
     font-weight: normal;
 }
 
+#match-name {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#match-img {
+    margin: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
 option {
     font-weight: bold;
+    color: black;
 }
 
 select {
@@ -42,4 +71,21 @@ select {
 .btn-block {
     height: 60px;
     border: none;
+    height: 60px;  
 }
+
+a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:active {
+    text-decoration: none;
+  }
